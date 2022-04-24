@@ -20,6 +20,8 @@ export const LoginForm = styled.div`
     box-shadow: var(--box-shadow) 0px 0px 0.25em,
       rgba(255, 255, 255, 0.05) 0px 0.25em 1em;
     border-radius: 15px;
+    position: sticky;
+    top: 7rem;
   }
 
   .signup__outer {

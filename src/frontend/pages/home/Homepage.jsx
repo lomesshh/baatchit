@@ -4,6 +4,8 @@ import "react-responsive-modal/styles.css";
 import { Createpost, Home } from "frontend/styled-component/homeStyled";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Picker from "emoji-picker-react";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogout } from "frontend/redux/Slices/AuthSlice";
 
 const navLinkStyle = ({ isActive }) => {
   return isActive ? `activetab` : `notactive`;
@@ -15,6 +17,9 @@ const Homepage = () => {
 
   const [showEmoji, setShowEmoji] = useState(false);
   let [desc, setDesc] = useState("");
+
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const onEmojiClick = (event, emojiObject) => {
     setDesc(desc + emojiObject.emoji);
@@ -65,12 +70,11 @@ const Homepage = () => {
                 <i class="fa-solid fa-user"></i> My Profile
               </p>
             </NavLink>
-            <p>
-              <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
-            </p>
-            <p>
-              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-            </p>
+            {token && (
+              <p onClick={() => dispatch(userLogout())}>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+              </p>
+            )}
           </div>
         </div>
         <div className="main">

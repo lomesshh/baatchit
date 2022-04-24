@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      <Nav />
+      {location.pathname !== "/mock" && <Nav />}
       <RoutesList />
-      {location.pathname === "landing" && <Footer />}
+      {location.pathname === "/landing" && <Footer />}
     </div>
   );
 }

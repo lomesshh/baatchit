@@ -2,9 +2,12 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { LoginForm } from "frontend/styled-component/authStyled";
+import { handleUserSignup } from "frontend/services/AuthService";
+import { useDispatch } from "react-redux";
 
 const initialValues = {
   name: "",
+  username: "",
   email: "",
   password: "",
   cpassword: "",
@@ -14,6 +17,12 @@ const validate = (values) => {
   let errors = {};
 
   if (!values.name) {
+    errors.name = "Required";
+  } else if (values.name.length < 3) {
+    errors.name = "Atleast 3 Character";
+  }
+
+  if (!values.username) {
     errors.name = "Required";
   } else if (values.name.length < 3) {
     errors.name = "Atleast 3 Character";
@@ -41,8 +50,10 @@ const validate = (values) => {
 };
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const onSubmit = (values) => {
-    console.log(values);
+    dispatch(handleUserSignup(values));
   };
 
   const formik = useFormik({
@@ -78,6 +89,19 @@ const Signup = () => {
           <br />
           {formik.touched.name && formik.errors.name ? (
             <span className="error__display">{formik.errors.name}</span>
+          ) : null}
+          <p htmlFor="username">Username</p>
+          <input
+            type="text"
+            placeholder="Enter username"
+            name="username"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.username}
+          />
+          <br />
+          {formik.touched.username && formik.errors.username ? (
+            <span className="error__display">{formik.errors.username}</span>
           ) : null}
           <p htmlFor="email">Email</p>
           <input

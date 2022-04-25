@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { LoginForm } from "frontend/styled-component/authStyled";
+import { useDispatch } from "react-redux";
+import { handleUserLogin } from "frontend/services/AuthService";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      dispatch(handleUserLogin(values));
     },
     validate: (values) => {
       let errors = {};
-      if (!values.email) {
-        errors.email = "Required";
-      } else if (
-        !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)
-      ) {
-        errors.email = "Invalid email format";
+      if (!values.username) {
+        errors.username = "Required";
       }
 
       if (!values.password) {
@@ -45,18 +45,18 @@ const Login = () => {
       <form className="login" onSubmit={formik.handleSubmit}>
         <h1 className="login__title">Log in</h1>
         <div className="login__fields">
-          <p htmlFor="email">Email</p>
+          <p htmlFor="username">username</p>
           <input
-            type="email"
-            placeholder="Enter email"
-            name="email"
+            type="text"
+            placeholder="Enter username"
+            name="username"
             onChange={formik.handleChange}
-            value={formik.values.email}
+            value={formik.values.username}
             onBlur={formik.handleBlur}
           />
           <br />
-          {formik.touched.email && formik.errors.email ? (
-            <span className="error__display">{formik.errors.email}</span>
+          {formik.touched.username && formik.errors.username ? (
+            <span className="error__display">{formik.errors.username}</span>
           ) : null}
           <p htmlFor="password">Password</p>
           <input
@@ -78,8 +78,8 @@ const Login = () => {
           className="login__button"
           type="submit"
           onClick={() => {
-            formik.values.email = "test@gmail.com";
-            formik.values.password = "test123";
+            formik.values.username = "adarshbalika";
+            formik.values.password = "adarshBalika123";
           }}
         >
           Test credentials

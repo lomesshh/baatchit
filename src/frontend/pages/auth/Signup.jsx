@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginForm } from "frontend/styled-component/authStyled";
 import { handleUserSignup } from "frontend/services/AuthService";
 import { useDispatch } from "react-redux";
@@ -51,9 +51,10 @@ const validate = (values) => {
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const naviagte = useNavigate();
 
   const onSubmit = (values) => {
-    dispatch(handleUserSignup(values));
+    dispatch(handleUserSignup(values, naviagte, "/login"));
   };
 
   const formik = useFormik({

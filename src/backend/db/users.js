@@ -13,6 +13,8 @@ export const users = [
     email: "balika@gmail.com",
     username: "adarshbalika",
     password: "adarshBalika123",
+    bio: "this is my bio balika",
+    link: "https://adarshbalika.netlify.app",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

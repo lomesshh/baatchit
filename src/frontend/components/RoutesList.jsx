@@ -8,6 +8,7 @@ import {
   Profile,
   Savedpage,
   Signup,
+  Singlepost,
 } from "frontend/pages";
 import Mockman from "mockman-js";
 
@@ -19,6 +20,7 @@ const RoutesList = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<Mockman />} />
         <Route path="/home" element={<Homepage />}>
+          <Route path="feed/post/:postId" element={<Singlepost />} />
           <Route path="feed" element={<Explorepage />} />
           <Route path="likes" element={<Likespage />} />
           <Route path="saved" element={<Savedpage />} />

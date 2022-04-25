@@ -2,16 +2,15 @@ import React, { useEffect } from "react";
 import { Feed } from "frontend/styled-component/feedStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "frontend/services/PostService";
-import Postcard from "frontend/components/PostCard";
+import { Postcard } from "frontend/components";
 
 const Explorepage = () => {
   const dispatch = useDispatch();
+  const { allPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getAllPost());
-  }, [dispatch]);
-
-  const { allPosts } = useSelector((state) => state.post);
+  }, [allPosts]);
 
   return (
     <Feed>

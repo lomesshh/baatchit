@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { Createpost, Home } from "frontend/styled-component/homeStyled";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Picker from "emoji-picker-react";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "frontend/redux/Slices/AuthSlice";
+import { createPost } from "frontend/services/PostService";
+import axios from "axios";
 
 const navLinkStyle = ({ isActive }) => {
   return isActive ? `activetab` : `notactive`;
@@ -13,17 +15,43 @@ const navLinkStyle = ({ isActive }) => {
 
 const Homepage = () => {
   const location = useLocation();
-  const [open, setOpen] = useState(false);
-
-  const [showEmoji, setShowEmoji] = useState(false);
-  let [desc, setDesc] = useState("");
-
+  const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const [open, setOpen] = useState(false);
+  const [inputImage, setInputImage] = useState();
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [postDetail, setPostDetail] = useState({
+    title: "",
+    content: "",
+    imgSrc: "",
+  });
+
   const onEmojiClick = (event, emojiObject) => {
-    setDesc(desc + emojiObject.emoji);
+    setPostDetail({
+      ...postDetail,
+      content: postDetail.content + emojiObject.emoji,
+    });
   };
+
+  // const uploadImage = () => {
+  //   const data = new FormData();
+  //   data.append("file", inputImage);
+  //   data.append("upload_preset", "cvj0uqih");
+  //   // for (var value of data.values()) {
+  //   //   console.log(value);
+  //   // }
+  //   axios
+  //     .post("https://api.cloudinary.com/v1_1/dgwzpbj4k/image/upload", data)
+  //     .then((res) => {
+  //       console.log(res.data.url);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       alert(error);
+  //     });
+  // };
 
   return (
     <div>
@@ -71,7 +99,12 @@ const Homepage = () => {
               </p>
             </NavLink>
             {token && (
-              <p onClick={() => dispatch(userLogout())}>
+              <p
+                onClick={() => {
+                  dispatch(userLogout());
+                  navigate("/");
+                }}
+              >
                 <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
               </p>
             )}
@@ -157,21 +190,34 @@ const Homepage = () => {
       <Modal open={open} onClose={() => setOpen(!open)} center>
         <Createpost>
           <h3>Add New Post</h3>
-          <input className="modal__input" type="text" placeholder="Title" />
+          <input
+            className="modal__input"
+            type="text"
+            placeholder="Title"
+            value={postDetail.title}
+            onChange={(e) =>
+              setPostDetail({ ...postDetail, title: e.target.value })
+            }
+          />
           <textarea
             className="modal__input"
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
             placeholder="Description"
             rows="4"
             cols="50"
+            value={postDetail.content}
+            onChange={(e) =>
+              setPostDetail({ ...postDetail, content: e.target.value })
+            }
           ></textarea>
           <div className="emoji__div">
             <i
               onClick={() => setShowEmoji(!showEmoji)}
               class="fa-solid fa-face-grin"
             ></i>
-            <input type="file" />
+            <input
+              type="file"
+              onChange={(e) => setInputImage(e.target.files[0])}
+            />
           </div>
           {showEmoji && (
             <Picker
@@ -186,6 +232,8 @@ const Homepage = () => {
             className="modal__button"
             onClick={() => {
               setOpen(!open);
+              dispatch(createPost(postDetail, token, inputImage));
+              // uploadImage();
             }}
           >
             Add

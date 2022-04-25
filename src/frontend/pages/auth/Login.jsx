@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginForm } from "frontend/styled-component/authStyled";
 import { useDispatch } from "react-redux";
 import { handleUserLogin } from "frontend/services/AuthService";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -14,7 +15,7 @@ const Login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      dispatch(handleUserLogin(values));
+      dispatch(handleUserLogin(values, navigate, "/home/feed"));
     },
     validate: (values) => {
       let errors = {};

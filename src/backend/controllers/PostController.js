@@ -77,7 +77,7 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
-    const { postData } = JSON.parse(request.requestBody);
+    const { tempObj: postData } = JSON.parse(request.requestBody);
     const post = {
       _id: uuid(),
       ...postData,
@@ -123,7 +123,7 @@ export const editPostHandler = function (schema, request) {
       );
     }
     const postId = request.params.postId;
-    const { postData } = JSON.parse(request.requestBody);
+    const { post: postData } = JSON.parse(request.requestBody);
     let post = schema.posts.findBy({ _id: postId }).attrs;
     if (post.username !== user.username) {
       return new Response(

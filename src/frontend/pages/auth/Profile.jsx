@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 
 import { ProfileDiv } from "frontend/styled-component/profileStyled";
-import { PostCard } from "frontend/styled-component/feedStyled";
 import { Createpost } from "frontend/styled-component/homeStyled";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsersPost } from "frontend/services/PostService";
+import { Postcard } from "frontend/components";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const { allPosts, usersPost } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsersPost(user.username));
+  }, [allPosts]);
 
   return (
     <ProfileDiv>
@@ -22,7 +31,7 @@ const Profile = () => {
         </div>
         <div className="profile__info">
           <div className="profile__edit">
-            <h3>John Doe</h3>
+            <h3>{user.firstName + " " + user.lastName}</h3>
             <button
               onClick={() => {
                 setOpen(!open);
@@ -31,116 +40,29 @@ const Profile = () => {
               <i class="fa-solid fa-pencil"></i>
             </button>
           </div>
-          <h4>@johndoe</h4>
+          <h4>@{user.username}</h4>
           <div className="profile__stats">
             <p>
               <strong>2</strong> Posts
             </p>
             <p>
-              <strong>12</strong> Followers
+              <strong>{user.followers?.length}</strong> Followers
             </p>
             <p>
-              <strong>7</strong> Following
+              <strong>{user.following?.length}</strong> Following
             </p>
           </div>
-          <h4 className="profile__bio">My Bio goes here</h4>
-          <a href="https://lomeshbadhe.netlify.app">
-            https://lomeshbadhe.netlify.app
-          </a>
+          <h4 className="profile__bio">{user.bio}</h4>
+          <a href={user.link}>{user.link}</a>
         </div>
       </div>
       <div>
         <h1 className="post__heading">
           My Posts <i class="fa-solid fa-newspaper"></i>
         </h1>
-        <PostCard>
-          <div className="profile__info">
-            <div className="profile__image">
-              <img
-                src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647240006/shoemall/flipflop_qao6dx.png"
-                alt="profile-img"
-              />
-            </div>
-            <h3>John Doe</h3>
-          </div>
-          <div className="post__image">
-            <img
-              src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648029766/gripping%20gears/hero3_m01qvm.webp"
-              alt="profile-img"
-            />
-          </div>
-          <div className="post__info">
-            <h4>Title</h4>
-            <p>
-              Ipsum quis consectetur deserunt duis mollit irure ullamco velit
-              nostrud. Veniam qui id eu ipsum adipisicing aliqua exercitation
-              reprehenderit in voluptate. Dolor consequat in non officia Lorem
-              sint excepteur Lorem aliquip voluptate commodo exercitation.
-            </p>
-          </div>
-          <div className="button__options">
-            <div className="button__left">
-              <p>
-                <i class="fa-solid fa-thumbs-up"></i>
-              </p>
-              <p>
-                <i class="fa-solid fa-comment-dots"></i>
-              </p>
-              <p>
-                <i class="fa-solid fa-bookmark"></i>
-              </p>
-            </div>
-            <div className="button__right">
-              <p>
-                <i class="fa-solid fa-share-from-square"></i>
-              </p>
-              <p>
-                <i class="fa-solid fa-trash"></i>
-              </p>
-            </div>
-          </div>
-        </PostCard>
-        <PostCard>
-          <div className="profile__info">
-            <div className="profile__image">
-              <img
-                src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647240006/shoemall/flipflop_qao6dx.png"
-                alt="profile-img"
-              />
-            </div>
-            <h3>John Doe</h3>
-          </div>
-          <div className="post__info">
-            <h4>Title</h4>
-            <p>
-              Ipsum quis consectetur deserunt duis mollit irure ullamco velit
-              nostrud. Veniam qui id eu ipsum adipisicing aliqua exercitation
-              reprehenderit in voluptate. Dolor consequat in non officia Lorem
-              sint excepteur Lorem aliquip voluptate commodo exercitation.
-            </p>
-          </div>
-          <div className="button__options">
-            <div className="button__left">
-              <p>
-                <i class="fa-solid fa-thumbs-up"></i>
-              </p>
-              <p>
-                <i class="fa-solid fa-comment-dots"></i>
-              </p>
-              <p>
-                <i class="fa-solid fa-bookmark"></i>
-              </p>
-            </div>
-            <div className="button__right">
-              <p>
-                <i class="fa-solid fa-share-from-square"></i>
-              </p>
-              <p>
-                <i class="fa-solid fa-trash"></i>
-              </p>
-            </div>
-          </div>
-        </PostCard>
+        {usersPost.map((post) => (
+          <Postcard post={post} key={post._id} />
+        ))}
       </div>
       <Modal open={open} onClose={() => setOpen(!open)} center>
         <Createpost>

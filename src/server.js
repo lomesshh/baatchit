@@ -57,6 +57,7 @@ export function makeServer({ environment = "development" } = {}) {
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
+      // this.post("https://api.cloudinary.com/v1_1/dgwzpbj4k/image/upload");
 
       // post routes (public)
       this.get("/posts", getAllpostsHandler.bind(this));

@@ -5,6 +5,9 @@ export const Feed = styled.div`
     text-align: center;
     margin: 1rem;
   }
+  .single__post {
+    margin-top: 2rem;
+  }
 `;
 
 export const PostCard = styled.div`

@@ -1,13 +1,21 @@
 import React from "react";
 import { Feed, PostCard } from "frontend/styled-component/feedStyled";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "react-responsive-modal/styles.css";
+import { likePost, savePost } from "frontend/services/PostService";
 
 const Singlepost = () => {
   const { postId } = useParams();
-  const { allPosts } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+  const { allPosts, savedPost } = useSelector((state) => state.post);
+  const { user, token } = useSelector((state) => state.auth);
   const findProduct = allPosts.find((prod) => prod._id === postId);
+
+  const findUserInLikes = findProduct.likes.likedBy.findIndex(
+    (char) => char.username === user.username
+  );
+  const findUserInSaved = savedPost.findIndex((ele) => ele === findProduct._id);
 
   return (
     <Feed>
@@ -32,14 +40,33 @@ const Singlepost = () => {
         </div>
         <div className="button__options">
           <div className="button__left">
-            <p>
-              <i class="fa-solid fa-thumbs-up"></i>
+            <p
+              onClick={() =>
+                dispatch(likePost(findProduct, user, findProduct._id, token))
+              }
+            >
+              <span>{findProduct.likes.likeCount}</span>{" "}
+              <i
+                class={`fa-solid fa-thumbs-up ${
+                  findUserInLikes !== -1 ? `liked__post` : ``
+                } `}
+              ></i>
             </p>
             <p>
               <i class="fa-solid fa-comment-dots"></i>
             </p>
-            <p>
-              <i class="fa-solid fa-bookmark"></i>
+            <p
+              onClick={() =>
+                dispatch(
+                  savePost(savedPost, findProduct, findProduct._id, token)
+                )
+              }
+            >
+              <i
+                class={`fa-solid fa-bookmark ${
+                  findUserInSaved !== -1 ? `saved__post` : ``
+                } `}
+              ></i>
             </p>
           </div>
           <div className="button__right">

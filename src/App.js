@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 function App() {
   const location = useLocation();
   const { loader } = useSelector((state) => state.post);
-  console.log(loader);
   return (
     <div className="App">
       <GlobalStyles />

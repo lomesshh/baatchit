@@ -18,4 +18,16 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    firstName: "aaa",
+    lastName: "aaa",
+    email: "aaa@gmail.com",
+    username: "aaa",
+    password: "aaa",
+    bio: "this is my bio aaa",
+    link: "https://aaa.netlify.app",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];

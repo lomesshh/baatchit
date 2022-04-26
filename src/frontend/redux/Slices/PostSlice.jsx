@@ -3,6 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   allPosts: [],
   usersPost: [],
+  savedPost: [],
   loader: false,
 };
 
@@ -28,6 +29,21 @@ const PostSlice = createSlice({
     deleteAPost(state, action) {
       state.allPosts = action.payload;
     },
+    likeAPost(state, action) {
+      state.allPosts = action.payload;
+    },
+    dislikeAPost(state, action) {
+      state.allPosts = action.payload;
+    },
+    getSavedPost(state, action) {
+      state.savedPost = action.payload;
+    },
+    saveAPoast(state, action) {
+      state.savedPost = action.payload;
+    },
+    unSaveAPoast(state, action) {
+      state.savedPost = action.payload;
+    },
   },
 });
 
@@ -38,6 +54,11 @@ export const {
   createAPost,
   editAPost,
   deleteAPost,
+  likeAPost,
+  dislikeAPost,
+  getSavedPost,
+  saveAPoast,
+  unSaveAPoast,
 } = PostSlice.actions;
 
 export default PostSlice;

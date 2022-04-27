@@ -42,9 +42,14 @@ export const getPostHandler = function (schema, request) {
  * */
 
 export const getAllUserPostsHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
   const { username } = request.params;
   try {
-    const posts = schema.posts.where({ username })?.models;
+    const tempPosts = schema.posts.where({ username })?.models;
+    let posts = [];
+    tempPosts.map((ele) =>
+      posts.push({ ...ele.attrs, profilePic: user.profilePic })
+    );
     return new Response(200, {}, { posts });
   } catch (error) {
     return new Response(

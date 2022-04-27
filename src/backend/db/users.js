@@ -99,6 +99,8 @@ export const users = [
     password: "aaa",
     bio: "this is my bio aaa",
     link: "https://aaa.netlify.app",
+    profilePic:
+      "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1650457791/baatchit/pensioner_qhagvm.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

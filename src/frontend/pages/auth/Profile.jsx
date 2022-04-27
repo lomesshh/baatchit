@@ -20,14 +20,14 @@ const Profile = () => {
   const [inputImage, setInputImage] = useState();
   const { user, token } = useSelector((state) => state.auth);
   const { anyUser } = useSelector((state) => state.user);
-  const { usersPost } = useSelector((state) => state.post);
+  const { allPosts, usersPost } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({ ...user });
 
   useEffect(() => {
     dispatch(fetchUserData(user._id));
-    dispatch(getUsersPost(user.username));
-  }, [user]);
+    dispatch(getUsersPost(user.username, token));
+  }, [user, allPosts]);
 
   return (
     <ProfileDiv>

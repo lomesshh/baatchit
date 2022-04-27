@@ -25,12 +25,15 @@ export const getAllPost = () => {
   };
 };
 
-export const getUsersPost = (userName) => {
+export const getUsersPost = (userName, token) => {
   return async (dispatch) => {
     dispatch(toggleLoader(true));
     try {
-      const response = await axios.get(`/api/posts/user/${userName}`);
+      const response = await axios.get(`/api/posts/user/${userName}`, {
+        headers: { authorization: token },
+      });
       dispatch(getAllUsersPost(response.data.posts));
+      console.log(response.data);
       dispatch(toggleLoader(false));
     } catch (error) {
       dispatch(toggleLoader(false));

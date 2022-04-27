@@ -22,9 +22,18 @@ const AuthSlice = createSlice({
       localStorage.removeItem("socialUser");
       localStorage.removeItem("socialToken");
     },
+    handleFollowUser(state, action) {
+      state.user = action.payload;
+      localStorage.setItem("socialUser", JSON.stringify(action.payload));
+    },
+    updateUserData(state, action) {
+      state.user = action.payload;
+      localStorage.setItem("socialUser", JSON.stringify(action.payload));
+    },
   },
 });
 
-export const { userLogin, userLogout } = AuthSlice.actions;
+export const { userLogin, userLogout, handleFollowUser, updateUserData } =
+  AuthSlice.actions;
 
 export default AuthSlice;

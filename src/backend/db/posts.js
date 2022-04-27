@@ -20,6 +20,8 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarshbalika",
+    profilePic:
+      "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1650457790/baatchit/woman_ojbd7v.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -35,6 +37,8 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarshbalika",
+    profilePic:
+      "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1650457790/baatchit/woman_ojbd7v.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -50,7 +54,9 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "lomesshh",
+    username: "aaa",
+    profilePic:
+      "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1650457791/baatchit/pensioner_qhagvm.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

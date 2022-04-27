@@ -3,6 +3,7 @@ import { Feed } from "frontend/styled-component/feedStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "frontend/services/PostService";
 import { Postcard } from "frontend/components";
+import { fetchAllUsers } from "frontend/services/UserService";
 
 const Explorepage = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const Explorepage = () => {
 
   useEffect(() => {
     dispatch(getAllPost());
+    dispatch(fetchAllUsers());
   }, [allPosts]);
 
   return (

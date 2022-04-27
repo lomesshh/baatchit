@@ -40,7 +40,6 @@ a{
   font-family: "Nunito", sans-serif;
   margin: 0;
   padding: 0;
-  transition: 0.5s;
 }
 
 `;

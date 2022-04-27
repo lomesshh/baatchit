@@ -7,26 +7,34 @@ import { Createpost } from "frontend/styled-component/homeStyled";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsersPost } from "frontend/services/PostService";
 import { Postcard } from "frontend/components";
+import {
+  editUserData,
+  fetchUserData,
+  unfollowUser,
+} from "frontend/services/UserService";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
-  const { user } = useSelector((state) => state.auth);
-  const { allPosts, usersPost } = useSelector((state) => state.post);
+  const [openOne, setOpenOne] = useState(false);
+  const [openTwo, setOpenTwo] = useState(false);
+  const [inputImage, setInputImage] = useState();
+  const { user, token } = useSelector((state) => state.auth);
+  const { anyUser } = useSelector((state) => state.user);
+  const { usersPost } = useSelector((state) => state.post);
   const dispatch = useDispatch();
+  const [userData, setUserData] = useState({ ...user });
 
   useEffect(() => {
+    dispatch(fetchUserData(user._id));
     dispatch(getUsersPost(user.username));
-  }, [allPosts]);
+  }, [user]);
 
   return (
     <ProfileDiv>
       <div className="profile__main">
         <div className="profile__img">
           <div className="image__outer">
-            <img
-              src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1650457646/baatchit/boy_urhxrp.png"
-              alt="profile-img"
-            />
+            <img src={user.profilePic} alt="profile-img" />
           </div>
         </div>
         <div className="profile__info">
@@ -43,12 +51,12 @@ const Profile = () => {
           <h4>@{user.username}</h4>
           <div className="profile__stats">
             <p>
-              <strong>2</strong> Posts
+              <strong>{usersPost.length}</strong> Posts
             </p>
-            <p>
+            <p onClick={() => setOpenTwo(!openTwo)}>
               <strong>{user.followers?.length}</strong> Followers
             </p>
-            <p>
+            <p onClick={() => setOpenOne(!openOne)}>
               <strong>{user.following?.length}</strong> Following
             </p>
           </div>
@@ -58,7 +66,7 @@ const Profile = () => {
       </div>
       <div>
         <h1 className="post__heading">
-          My Posts <i class="fa-solid fa-newspaper"></i>
+          Posts <i class="fa-solid fa-newspaper"></i>
         </h1>
         {usersPost.map((post) => (
           <Postcard post={post} key={post._id} />
@@ -70,14 +78,14 @@ const Profile = () => {
           <input
             className="modal__input"
             type="text"
-            value="John Doe"
+            value={userData.firstName + " " + userData.lastName}
             placeholder="Name"
             disabled
           />
           <input
             className="modal__input"
             type="text"
-            value="@johndoe"
+            value={userData.username}
             placeholder="UserName"
             disabled
           />
@@ -86,23 +94,75 @@ const Profile = () => {
             placeholder="Bio"
             rows="4"
             cols="50"
-            value="My Bio goes here"
+            value={userData.bio}
+            onChange={(e) => setUserData({ ...userData, bio: e.target.value })}
           ></textarea>
 
           <input
             className="modal__input"
             type="text"
             placeholder="Website link ( If any )"
-            value="https://lomeshbadhe.netlify.app"
+            value={userData.link}
+            onChange={(e) => setUserData({ ...userData, link: e.target.value })}
           />
+          <div className="emoji__div" style={{ paddingLeft: "0.5rem" }}>
+            <p>Select profile pic</p>
+
+            <input
+              type="file"
+              onChange={(e) => setInputImage(e.target.files[0])}
+            />
+          </div>
           <button
             className="modal__button"
             onClick={() => {
               setOpen(!open);
+              dispatch(editUserData(userData, token, inputImage));
             }}
           >
             Update
           </button>
+        </Createpost>
+      </Modal>
+      <Modal open={openOne} onClose={() => setOpenOne(!openOne)} center>
+        <Createpost>
+          <h3>Followings</h3>
+          {user.following.map((user) => (
+            <div className="user__profile" key={user._id}>
+              <div className="user__image">
+                <img src={user.profilePic} alt="profile-img" />
+              </div>
+              <div className="user__info">
+                <h4>{user.firstName + " " + user.lastName}</h4>
+                <p>@{user.username}</p>
+              </div>
+              <div className="user__button">
+                <button
+                  onClick={() => {
+                    dispatch(unfollowUser(user._id, token));
+                  }}
+                >
+                  Unfollow
+                </button>
+              </div>
+            </div>
+          ))}
+        </Createpost>
+      </Modal>
+      <Modal open={openTwo} onClose={() => setOpenTwo(!openTwo)} center>
+        <Createpost>
+          <h3>Followings</h3>
+          {user.followers.map((user) => (
+            <div className="user__profile" key={user._id}>
+              <div className="user__image">
+                <img src={user.profilePic} alt="profile-img" />
+              </div>
+              <div className="user__info">
+                <h4>{user.firstName + " " + user.lastName}</h4>
+                <p>@{user.username}</p>
+              </div>
+            </div>
+          ))}
         </Createpost>
       </Modal>
     </ProfileDiv>

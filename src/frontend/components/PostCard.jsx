@@ -42,17 +42,14 @@ const Postcard = ({ post }) => {
 
   return (
     <PostCard>
-      <Link to={`post/${post._id}`}>
-        <div className="profile__info">
-          <div className="profile__image">
-            <img
-              src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647240006/shoemall/flipflop_qao6dx.png"
-              alt="profile-img"
-            />
-          </div>
-          <h3>{post?.username}</h3>
+      <div className="profile__info">
+        <div className="profile__image">
+          <img src={post.profilePic} alt="profile-img" />
         </div>
-        {post?.imgSrc && (
+        <h3>{post.username}</h3>
+      </div>
+      <Link to={`/post/${post._id}`}>
+        {post.imgSrc && (
           <div className="post__image">
             <img src={post?.imgSrc} alt="profile-img" />
           </div>
@@ -112,7 +109,7 @@ const Postcard = ({ post }) => {
       {post?.likes?.likeCount === 0 && <p>Be the first to like</p>}
       <Modal open={open} onClose={() => setOpen(!open)} center>
         <Createpost>
-          <h3>Add New Post</h3>
+          <h3>Edit Post</h3>
           <input
             className="modal__input"
             type="text"
@@ -155,7 +152,7 @@ const Postcard = ({ post }) => {
             className="modal__button"
             onClick={() => {
               setOpen(!open);
-              dispatch(editPost(postDetail, post._id, token));
+              dispatch(editPost(postDetail, post._id, token, inputImage));
             }}
           >
             Add

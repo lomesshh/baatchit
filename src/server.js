@@ -54,6 +54,7 @@ export function makeServer({ environment = "development" } = {}) {
 
     routes() {
       this.namespace = "api";
+
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
@@ -87,6 +88,12 @@ export function makeServer({ environment = "development" } = {}) {
       this.post(
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
+      );
+
+      this.passthrough();
+      this.passthrough(
+        "https://api.cloudinary.com/v1_1/dgwzpbj4k/image/upload",
+        ["post"]
       );
     },
   });

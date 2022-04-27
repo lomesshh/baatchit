@@ -22,37 +22,42 @@ export const getAllPost = () => {
 
 export const getUsersPost = (userName) => {
   return async (dispatch) => {
+    dispatch(toggleLoader(true));
     try {
       const response = await axios.get(`/api/posts/user/${userName}`);
       dispatch(getAllUsersPost(response.data.posts));
+      dispatch(toggleLoader(false));
     } catch (error) {
+      dispatch(toggleLoader(false));
       console.log(error);
     }
   };
 };
 
 export const createPost = (post, token, inputImage) => {
-  const tempObj = { ...post };
+  let tempObj = { ...post };
   return async (dispatch) => {
     dispatch(toggleLoader(true));
     try {
-      // const formData = new FormData();
-      // formData.append("file", inputImage);
-      // formData.append("upload_preset", "cvj0uqih");
-      // console.log(formData);
-      // await axios
-      //   .post(
-      //     "https://api.cloudinary.com/v1_1/dgwzpbj4k/image/upload",
-      //     formData
-      //   )
-      //   .then((res) => {
-      //     tempObj = { ...tempObj, imgSrc: res.data.url };
-      //     console.log("img", res, tempObj);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     alert(error);
-      //   });
+      const data = new FormData();
+      data.append("file", inputImage);
+      data.append("upload_preset", "cvj0uqih");
+      const requestOptions = {
+        method: "POST",
+        body: data,
+      };
+      await fetch(
+        "https://api.cloudinary.com/v1_1/dgwzpbj4k/image/upload",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          tempObj = { ...tempObj, imgSrc: json.url };
+        })
+        .catch((error) => {
+          console.log(error);
+          Notify("Image uploading failed", "error");
+        });
       const res = await axios.post(
         "/api/posts",
         { tempObj },
@@ -71,10 +76,30 @@ export const createPost = (post, token, inputImage) => {
   };
 };
 
-export const editPost = (post, postId, token) => {
+export const editPost = (postDetail, postId, token, inputImage) => {
+  let post = { ...postDetail };
   return async (dispatch) => {
     dispatch(toggleLoader(true));
     try {
+      const data = new FormData();
+      data.append("file", inputImage);
+      data.append("upload_preset", "cvj0uqih");
+      const requestOptions = {
+        method: "POST",
+        body: data,
+      };
+      await fetch(
+        "https://api.cloudinary.com/v1_1/dgwzpbj4k/image/upload",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          post = { ...post, imgSrc: json.url };
+        })
+        .catch((error) => {
+          console.log(error);
+          Notify("Image uploading failed", "error");
+        });
       const response = await axios.post(
         `/api/posts/edit/${postId}`,
         { post },

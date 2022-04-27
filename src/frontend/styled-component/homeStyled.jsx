@@ -22,15 +22,16 @@ export const Home = styled.div`
       .user__image {
         width: 28%;
         height: 4rem;
-        border-radius: 50%;
-        border: 1px solid gray;
         margin: 0.3rem;
 
         img {
           width: 100%;
           height: 100%;
+          border-radius: 50%;
+          border: 1px solid gray;
         }
       }
+
       .user__info {
         width: 72%;
         margin-top: 0.5rem;
@@ -45,16 +46,6 @@ export const Home = styled.div`
     .sidebar__option {
       font-size: 1.2rem;
 
-      p {
-        margin: 1rem;
-        margin-top: 1.5rem;
-        cursor: pointer;
-
-        i {
-          margin-right: 0.3rem;
-        }
-      }
-
       .notactive {
         width: 100%;
         border: none;
@@ -66,9 +57,23 @@ export const Home = styled.div`
       .activetab {
         border-bottom: 3px solid var(--text-primary-color);
         width: 100%;
+        color: var(--text-primary-color);
         background-color: var(--background-color);
         cursor: pointer;
       }
+
+      p {
+        margin: 1rem;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        color: inherit;
+
+        i {
+          margin-right: 0.3rem;
+          color: inherit;
+        }
+      }
+
       .modal__input {
         padding: 0.3rem 1rem;
         margin: 0.5rem;
@@ -184,6 +189,57 @@ export const Createpost = styled.div`
   display: flex;
   flex-direction: column;
 
+  .user__profile {
+    display: flex;
+    width: 18rem;
+    height: 5rem;
+    padding-right: 2rem;
+    margin: 0.3rem 0rem;
+    box-shadow: var(--box-shadow) 0px 1px 1px 0px,
+      var(--box-shadow) 0px 1px 2px 1px;
+
+    .user__image {
+      width: 25%;
+      height: 4rem;
+      margin: 0.3rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px solid gray;
+      }
+    }
+
+    .user__info {
+      width: 50%;
+      margin-top: 0.5rem;
+      margin-left: 0.4rem;
+
+      p {
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
+      }
+    }
+
+    .user__button {
+      width: 25%;
+      align-self: center;
+
+      button {
+        padding: 0.3rem 0.5rem;
+        color: var(--text-primary-color);
+        border-radius: 5px;
+        border: 1px solid var(--text-primary-color);
+        background-color: var(--background-color);
+        &:hover {
+          color: var(--background-color);
+          background-color: var(--text-primary-color);
+        }
+      }
+    }
+  }
+
   h3 {
     text-align: center;
   }
@@ -192,6 +248,7 @@ export const Createpost = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 0.5rem;
   }
 
   .fa-face-grin {

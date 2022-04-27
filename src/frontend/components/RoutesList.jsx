@@ -19,8 +19,8 @@ const RoutesList = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<Mockman />} />
+        <Route path="/post/:postId" element={<Singlepost />} />
         <Route path="/home" element={<Homepage />}>
-          <Route path="feed/post/:postId" element={<Singlepost />} />
           <Route path="feed" element={<Explorepage />} />
           <Route path="likes" element={<Likespage />} />
           <Route path="saved" element={<Savedpage />} />

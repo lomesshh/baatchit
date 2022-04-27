@@ -29,8 +29,6 @@ const Profile = () => {
     dispatch(getUsersPost(user.username));
   }, [user]);
 
-  console.log("ssssas", user);
-
   return (
     <ProfileDiv>
       <div className="profile__main">

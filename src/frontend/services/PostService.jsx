@@ -7,6 +7,11 @@ import {
   createAPost,
   editAPost,
   deleteAPost,
+  likeAPost,
+  dislikeAPost,
+  getSavedPost,
+  saveAPoast,
+  unSaveAPoast,
 } from "frontend/redux/Slices/PostSlice";
 
 export const getAllPost = () => {
@@ -132,6 +137,109 @@ export const deletePost = (postId, token) => {
       console.log(error);
       dispatch(toggleLoader(false));
       Notify("Unable to delete post", "error");
+    }
+  };
+};
+
+export const likePost = (post, user, postId, token) => {
+  const findUserInLikes = post.likes.likedBy.findIndex(
+    (char) => char.username === user.username
+  );
+
+  return async (dispatch) => {
+    dispatch(toggleLoader(true));
+    if (findUserInLikes === -1) {
+      try {
+        const res = await axios.post(
+          `/api/posts/like/${postId}`,
+          {},
+          {
+            headers: { authorization: token },
+          }
+        );
+        Notify("You liked a post", "success");
+        dispatch(likeAPost(res.data.posts));
+        dispatch(toggleLoader(false));
+      } catch (error) {
+        dispatch(toggleLoader(false));
+        Notify("Unable to like post", "error");
+        console.log(error);
+      }
+    } else {
+      try {
+        dispatch(toggleLoader(true));
+        const res = await axios.post(
+          `/api/posts/dislike/${postId}`,
+          {},
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch(dislikeAPost(res.data.posts));
+        dispatch(toggleLoader(false));
+        Notify("You disliked a post", "info");
+      } catch (error) {
+        dispatch(toggleLoader(false));
+        Notify("Unable to dislike post", "error");
+        console.log(error);
+      }
+    }
+  };
+};
+
+export const savePost = (savedPost, post, postId, token) => {
+  const findUserInSaved = savedPost.findIndex((ele) => ele === post._id);
+
+  return async (dispatch) => {
+    dispatch(toggleLoader(true));
+    if (findUserInSaved === -1) {
+      try {
+        const res = await axios.post(
+          `/api/users/bookmark/${postId}`,
+          {},
+          {
+            headers: { authorization: token },
+          }
+        );
+        Notify("Post saved Successfully", "success");
+        dispatch(saveAPoast(res.data.bookmarks));
+        dispatch(toggleLoader(false));
+      } catch (error) {
+        dispatch(toggleLoader(false));
+        Notify("Unable to save post", "error");
+        console.log(error);
+      }
+    } else {
+      try {
+        dispatch(toggleLoader(true));
+        const res = await axios.post(
+          `/api/users/remove-bookmark/${postId}`,
+          {},
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch(unSaveAPoast(res.data.bookmarks));
+        dispatch(toggleLoader(false));
+        Notify("Post removed from bookmarks", "info");
+      } catch (error) {
+        dispatch(toggleLoader(false));
+        Notify("Unable to remove post from bookmarks", "error");
+        console.log(error);
+      }
+    }
+  };
+};
+
+export const getAllSavedPost = (token) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get("/api/users/bookmark", {
+        headers: { authorization: token },
+      });
+      dispatch(getSavedPost(res.data.bookmarks));
+    } catch (error) {
+      console.log(error);
     }
   };
 };

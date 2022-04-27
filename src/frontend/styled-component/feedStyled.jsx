@@ -73,6 +73,11 @@ export const PostCard = styled.div`
     i {
       margin-right: 1.5rem;
     }
+
+    .liked__post,
+    .saved__post {
+      color: var(--text-primary-color);
+    }
   }
 
   .button__right {

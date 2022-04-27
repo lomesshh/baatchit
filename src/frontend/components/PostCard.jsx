@@ -5,11 +5,18 @@ import { Createpost } from "frontend/styled-component/homeStyled";
 import Picker from "emoji-picker-react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import { editPost, deletePost } from "frontend/services/PostService";
+import {
+  editPost,
+  deletePost,
+  likePost,
+  savePost,
+} from "frontend/services/PostService";
 import { Link } from "react-router-dom";
 
 const Postcard = ({ post }) => {
   const { user, token } = useSelector((state) => state.auth);
+  const { savedPost } = useSelector((state) => state.post);
+
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [inputImage, setInputImage] = useState();
@@ -26,6 +33,13 @@ const Postcard = ({ post }) => {
       content: postDetail.content + emojiObject.emoji,
     });
   };
+
+  const findUserInLikes = post?.likes?.likedBy?.findIndex(
+    (char) => char.username === user.username
+  );
+
+  const findUserInSaved = savedPost.findIndex((ele) => ele === post._id);
+
   return (
     <PostCard>
       <div className="profile__info">
@@ -37,31 +51,42 @@ const Postcard = ({ post }) => {
       <Link to={`/post/${post._id}`}>
         {post.imgSrc && (
           <div className="post__image">
-            <img src={post.imgSrc} alt="profile-img" />
+            <img src={post?.imgSrc} alt="profile-img" />
           </div>
         )}
         <div className="post__info">
-          <h4>{post.title}</h4>
-          <p>{post.content}</p>
+          <h4>{post?.title}</h4>
+          <p>{post?.content}</p>
         </div>
       </Link>
       <div className="button__options">
         <div className="button__left">
-          <p>
-            <i class="fa-solid fa-thumbs-up"></i>
+          <p onClick={() => dispatch(likePost(post, user, post._id, token))}>
+            <span>{post?.likes?.likeCount}</span>{" "}
+            <i
+              class={`fa-solid fa-thumbs-up ${
+                findUserInLikes !== -1 ? `liked__post` : ``
+              } `}
+            ></i>
           </p>
           <p>
             <i class="fa-solid fa-comment-dots"></i>
           </p>
-          <p>
-            <i class="fa-solid fa-bookmark"></i>
+          <p
+            onClick={() => dispatch(savePost(savedPost, post, post._id, token))}
+          >
+            <i
+              class={`fa-solid fa-bookmark ${
+                findUserInSaved !== -1 ? `saved__post` : ``
+              } `}
+            ></i>
           </p>
         </div>
         <div className="button__right">
           <p>
             <i class="fa-solid fa-share-from-square"></i>
           </p>
-          {user.username === post.username && (
+          {user?.username === post?.username && (
             <>
               <p
                 onClick={() => {
@@ -81,6 +106,7 @@ const Postcard = ({ post }) => {
           )}
         </div>
       </div>
+      {post?.likes?.likeCount === 0 && <p>Be the first to like</p>}
       <Modal open={open} onClose={() => setOpen(!open)} center>
         <Createpost>
           <h3>Edit Post</h3>

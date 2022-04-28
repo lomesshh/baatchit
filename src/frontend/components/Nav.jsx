@@ -9,7 +9,7 @@ const Nav = () => {
   return (
     <div>
       <Navbar>
-        <Link to="/home/feed">
+        <Link to="/">
           <div>
             <img
               src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1649917437/baatchit/baatchit_s8ziaf.png"

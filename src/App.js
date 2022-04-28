@@ -11,9 +11,9 @@ function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      {location.pathname !== "/mock" && <Nav />}
+      <Nav />
       <RoutesList />
-      {location.pathname === "/landing" && <Footer />}
+      {<Footer />}
       <ToastContainer />
       {loader && <Loader />}
     </div>

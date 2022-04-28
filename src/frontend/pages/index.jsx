@@ -6,3 +6,4 @@ export { Explorepage } from "./explore/Explorepage";
 export { Savedpage } from "./save/Savedpage";
 export { Likespage } from "./like/Likespage";
 export { Singlepost } from "./singlepost/Singlepost";
+export { Landingpage } from "./home/Landingpage";

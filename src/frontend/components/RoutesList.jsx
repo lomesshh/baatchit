@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import {
   Explorepage,
   Homepage,
+  Landingpage,
   Likespage,
   Login,
   Profile,
@@ -16,6 +17,7 @@ const RoutesList = () => {
   return (
     <div>
       <Routes>
+        <Route path="/" exact element={<Landingpage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<Mockman />} />

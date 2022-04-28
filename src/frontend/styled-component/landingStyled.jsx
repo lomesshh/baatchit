@@ -31,8 +31,8 @@ export const Landing = styled.div`
       }
 
       .signup__button {
-        padding: 0.3rem 1rem;
-        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+        font-size: 1.2rem;
         font-weight: 600;
         margin: 1rem;
         margin-left: 0rem;
@@ -43,8 +43,8 @@ export const Landing = styled.div`
       }
 
       .login__button {
-        padding: 0.3rem 1rem;
-        font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+        font-size: 1.2rem;
         font-weight: 600;
         margin: 1rem;
         margin-left: 0rem;

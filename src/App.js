@@ -13,7 +13,7 @@ function App() {
       <GlobalStyles />
       <Nav />
       <RoutesList />
-      {<Footer />}
+      {location.pathname === "/" && <Footer />}
       <ToastContainer />
       {loader && <Loader />}
     </div>

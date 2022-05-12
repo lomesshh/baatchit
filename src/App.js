@@ -3,11 +3,21 @@ import GlobalStyles from "frontend/styled-component/globalStyled";
 import { useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllPost } from "frontend/services/PostService";
+import { fetchAllUsers } from "frontend/services/UserService";
+import { useEffect } from "react";
 
 function App() {
   const location = useLocation();
-  const { loader } = useSelector((state) => state.post);
+  const { loader, filterType } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPost(filterType));
+    dispatch(fetchAllUsers());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <GlobalStyles />

@@ -8,6 +8,61 @@ export const Feed = styled.div`
   .single__post {
     margin-top: 2rem;
   }
+  .inputComment {
+    width: 70%;
+    margin: auto;
+
+    h3 i {
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+
+    input {
+      width: 60%;
+      padding: 0.5rem 1rem;
+      background-color: var(--background-color);
+      border: 1px solid var(--text-primary-color);
+      outline: none;
+      margin: 0.5rem 1rem 1rem 0.5rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--background-color);
+      background-color: var(--text-primary-color);
+      color: var(--background-color);
+      cursor: pointer;
+    }
+  }
+
+  .disply__comment {
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 5px 0px;
+    background-color: var(--card-background);
+    width: 70%;
+    margin: auto;
+    margin-bottom: 4rem;
+    padding: 0.6rem 0.5rem;
+
+    .commentSection {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.3rem 0.7rem;
+
+      .comment_pic {
+        height: 30px;
+        width: 30px;
+        display: flex;
+
+        img {
+          border-radius: 50%;
+          border: 1px solid gray;
+          height: 100%;
+          width: 100%;
+          margin-right: 0.4rem;
+        }
+      }
+    }
+  }
 `;
 
 export const PostCard = styled.div`

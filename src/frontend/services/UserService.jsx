@@ -48,7 +48,6 @@ export const editUserData = (data, token, inputImage) => {
         .then((response) => response.json())
         .then((json) => {
           userData = { ...userData, profilePic: json.url };
-          console.log("img", json.url, userData);
         })
         .catch((error) => {
           dispatch(toggleLoader(false));
@@ -85,7 +84,6 @@ export const followUser = (userId, token) => {
           headers: { authorization: token },
         }
       );
-      console.log(res.data);
       Notify("User Followed", "success");
       dispatch(handleFollowUser(res.data.user));
     } catch (error) {
@@ -105,7 +103,6 @@ export const unfollowUser = (userId, token) => {
           headers: { authorization: token },
         }
       );
-      console.log(res.data);
       Notify("User Unfollowed", "success");
       dispatch(handleFollowUser(res.data.user));
     } catch (error) {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Notify } from "frontend/components";
+import { v4 as uuid } from "uuid";
 import {
   getPosts,
   toggleLoader,
@@ -12,13 +13,15 @@ import {
   getSavedPost,
   saveAPoast,
   unSaveAPoast,
+  setFilteredPost,
 } from "frontend/redux/Slices/PostSlice";
 
-export const getAllPost = () => {
+export const getAllPost = (filterType) => {
   return async (dispatch) => {
     try {
       const res = await axios.get("/api/posts");
-      dispatch(getPosts(res.data.posts));
+      await dispatch(getPosts(res.data.posts));
+      setFilteredPostData(res.data.posts, dispatch, "NEW_FIRST");
     } catch (error) {
       console.log(error);
     }
@@ -33,7 +36,6 @@ export const getUsersPost = (userName, token) => {
         headers: { authorization: token },
       });
       dispatch(getAllUsersPost(response.data.posts));
-      console.log(response.data);
       dispatch(toggleLoader(false));
     } catch (error) {
       dispatch(toggleLoader(false));
@@ -144,7 +146,7 @@ export const deletePost = (postId, token) => {
   };
 };
 
-export const likePost = (post, user, postId, token) => {
+export const likePost = (post, user, postId, token, filterType) => {
   const findUserInLikes = post.likes.likedBy.findIndex(
     (char) => char.username === user.username
   );
@@ -161,7 +163,10 @@ export const likePost = (post, user, postId, token) => {
           }
         );
         Notify("You liked a post", "success");
-        dispatch(likeAPost(res.data.posts));
+        await dispatch(likeAPost(res.data.posts));
+        if (filterType != "") {
+          setFilteredPostData(res.data.posts, dispatch, filterType);
+        }
         dispatch(toggleLoader(false));
       } catch (error) {
         dispatch(toggleLoader(false));
@@ -243,6 +248,96 @@ export const getAllSavedPost = (token) => {
       dispatch(getSavedPost(res.data.bookmarks));
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const setFilteredPostData = (allPosts, dispatch, type) => {
+  switch (type) {
+    case "TRENDING":
+      let tempPosts1 = allPosts.filter((post) => post.isTrending);
+      dispatch(setFilteredPost({ posts: tempPosts1, type: type }));
+      break;
+    case "NEW_FIRST":
+      let tempPosts2 = allPosts
+        .slice()
+        .sort((a, b) =>
+          b.creationDate
+            .split("/")
+            .reverse()
+            .join()
+            .localeCompare(a.creationDate.split("/").reverse().join())
+        );
+      dispatch(setFilteredPost({ posts: tempPosts2, type: type }));
+      break;
+    case "OLD_FIRST":
+      let tempPosts3 = allPosts
+        .slice()
+        .sort((a, b) =>
+          a.creationDate
+            .split("/")
+            .reverse()
+            .join()
+            .localeCompare(b.creationDate.split("/").reverse().join())
+        );
+      dispatch(setFilteredPost({ posts: tempPosts3, type: type }));
+      break;
+    default:
+      dispatch(setFilteredPost(allPosts));
+      break;
+  }
+};
+
+export const addCommentHandler = (user, commentStatement, postId, token) => {
+  return async (dispatch) => {
+    dispatch(toggleLoader(true));
+    try {
+      const comment = {
+        _id: uuid(),
+        userId: user?._id,
+        username: user?.username,
+        comment: commentStatement,
+        profilePic: user?.profilePic,
+        reply: [],
+      };
+      const res = await axios.post(
+        `/api/post/comment/${postId}`,
+        {
+          comment,
+        },
+        {
+          headers: { authorization: token },
+        }
+      );
+      dispatch(getPosts(res.data.posts));
+      Notify("Comment added", "success");
+      dispatch(toggleLoader(false));
+    } catch (error) {
+      console.log(error);
+      Notify("Unable to add comment", "error");
+      dispatch(toggleLoader(false));
+    }
+  };
+};
+
+export const deleteCommentHandler = (commentId, postId, token) => {
+  return async (dispatch) => {
+    dispatch(toggleLoader(true));
+    try {
+      const res = await axios.post(
+        `/api/post/commentdelete/${postId}/${commentId}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+      dispatch(getPosts(res.data.posts));
+      Notify("Comment deleted", "success");
+      dispatch(toggleLoader(false));
+    } catch (error) {
+      console.log(error);
+      Notify("Unable to delete comment", "error");
+      dispatch(toggleLoader(false));
     }
   };
 };

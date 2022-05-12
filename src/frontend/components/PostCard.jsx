@@ -12,6 +12,8 @@ import {
   savePost,
 } from "frontend/services/PostService";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Postcard = ({ post }) => {
   const { user, token } = useSelector((state) => state.auth);
@@ -44,14 +46,18 @@ const Postcard = ({ post }) => {
     <PostCard>
       <div className="profile__info">
         <div className="profile__image">
-          <img src={post.profilePic} alt="profile-img" />
+          <LazyLoadImage
+            src={post.profilePic}
+            alt="profile-img"
+            effect="blur"
+          />
         </div>
         <h3>{post.username}</h3>
       </div>
       <Link to={`/post/${post._id}`}>
         {post.imgSrc && (
           <div className="post__image">
-            <img src={post?.imgSrc} alt="profile-img" />
+            <LazyLoadImage src={post?.imgSrc} alt="post-img" effect="blur" />
           </div>
         )}
         <div className="post__info">

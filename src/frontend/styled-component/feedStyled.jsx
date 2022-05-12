@@ -41,12 +41,12 @@ export const PostCard = styled.div`
     border: 1px solid gray;
   }
 
-  .post__image {
+  .post__image span {
     height: 100%;
     width: 100%;
   }
 
-  .post__image img {
+  .post__image span img {
     height: 100%;
     width: 100%;
   }

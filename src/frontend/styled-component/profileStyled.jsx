@@ -26,6 +26,10 @@ export const ProfileDiv = styled.div`
           border: 1px solid gray;
         }
       }
+
+      @media (max-width: 500px) {
+        width: 100%;
+      }
     }
 
     .profile__info {
@@ -36,6 +40,17 @@ export const ProfileDiv = styled.div`
         display: flex;
         justify-content: space-between;
         margin-bottom: 0.5rem;
+
+        .follow__button {
+          border-radius: 5px;
+          font-size: 1rem;
+        }
+
+        &:hover .follow__button {
+          background-color: var(--text-primary-color);
+          color: var(--background-color);
+          border: 1px solid var(--text-primary-color);
+        }
 
         button {
           padding: 0.3rem 0.5rem;
@@ -59,11 +74,34 @@ export const ProfileDiv = styled.div`
       .profile__bio {
         margin: 0.5rem 0rem;
       }
+
+      @media (max-width: 500px) {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 1390px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 420px) {
+      width: 90%;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 0.8rem;
     }
   }
 
   .post__heading {
     text-align: center;
     margin-bottom: 1rem;
+  }
+
+  .not__found {
+    margin-top: 5rem;
+    text-align: center;
   }
 `;

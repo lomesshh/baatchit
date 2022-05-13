@@ -1,8 +1,11 @@
 import { Landing } from "frontend/styled-component/landingStyled";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Landingpage = () => {
+  const { token } = useSelector((state) => state.auth);
+
   return (
     <Landing>
       <div className="main">
@@ -13,11 +16,8 @@ const Landingpage = () => {
           <h2>The Best Social App To Make New Friends</h2>
           <h4>Find People With The Same Interest As You</h4>
           <div>
-            <Link to="/signup">
-              <button className="signup__button">Sign Up</button>
-            </Link>
-            <Link to="/login">
-              <button className="login__button">Log In</button>
+            <Link to={`${token ? `/feed` : `/login`}`}>
+              <button className="login__button">Explore</button>
             </Link>
           </div>
         </div>

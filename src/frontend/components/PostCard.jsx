@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { Notify } from "frontend/components";
 
 const Postcard = ({ post }) => {
   const { user, token } = useSelector((state) => state.auth);
@@ -28,6 +29,16 @@ const Postcard = ({ post }) => {
     content: post.content,
     imgSrc: post.imgSrc,
   });
+
+  function copy() {
+    const el = document.createElement("input");
+    el.value = `https://baatchit-social.netlify.app/post/` + post._id;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    Notify("Copied to clipboard", "info");
+  }
 
   const onEmojiClick = (event, emojiObject) => {
     setPostDetail({
@@ -96,7 +107,7 @@ const Postcard = ({ post }) => {
         </div>
         <div className="button__right">
           <p>
-            <i class="fa-solid fa-share-from-square"></i>
+            <i class="fa-solid fa-share-from-square" onClick={copy}></i>
           </p>
           {user?.username === post?.username && (
             <>

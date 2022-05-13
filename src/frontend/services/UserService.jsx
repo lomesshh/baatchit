@@ -6,6 +6,7 @@ import {
 } from "frontend/redux/Slices/AuthSlice";
 import { toggleLoader } from "frontend/redux/Slices/PostSlice";
 import { Notify } from "frontend/components";
+import { getAnyUsersPostHandler } from "frontend/services/PostService";
 
 export const fetchAllUsers = () => {
   return async (dispatch) => {
@@ -18,12 +19,14 @@ export const fetchAllUsers = () => {
   };
 };
 
-export const fetchUserData = (userId) => {
+export const fetchUserData = (userId, token, navigate) => {
   return async (dispatch) => {
     try {
       const res = await axios.get(`/api/users/${userId}`);
-      dispatch(getUserData(res.data.user));
+      await dispatch(getUserData(res.data.user));
+      await dispatch(getAnyUsersPostHandler(res.data.user.username, token));
     } catch (error) {
+      navigate("/feed");
       console.log(error);
     }
   };

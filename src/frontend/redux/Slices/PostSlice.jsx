@@ -5,6 +5,7 @@ const initialState = {
   filteredPost: [],
   filterType: "",
   usersPost: [],
+  anyUserPost: [],
   savedPost: [],
   loader: false,
 };
@@ -52,6 +53,9 @@ const PostSlice = createSlice({
       state.filteredPost = posts;
       state.filterType = type;
     },
+    getAnyUsersPost(state, action) {
+      state.anyUserPost = action.payload;
+    },
   },
 });
 
@@ -69,6 +73,7 @@ export const {
   unSaveAPoast,
   setFilteredPost,
   addComment,
+  getAnyUsersPost,
 } = PostSlice.actions;
 
 export default PostSlice;

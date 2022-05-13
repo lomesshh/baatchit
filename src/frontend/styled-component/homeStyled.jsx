@@ -30,6 +30,12 @@ export const Home = styled.div`
           border-radius: 50%;
           border: 1px solid gray;
         }
+
+        @media (max-width: 600px) {
+          width: 90%;
+          height: 4rem;
+          margin: 0.3rem;
+        }
       }
 
       .user__info {
@@ -39,6 +45,9 @@ export const Home = styled.div`
 
         p {
           font-size: 0.8rem;
+        }
+        @media (max-width: 600px) {
+          display: none;
         }
       }
     }
@@ -63,14 +72,29 @@ export const Home = styled.div`
       }
 
       p {
-        margin: 1rem;
-        margin-top: 1.5rem;
         cursor: pointer;
         color: inherit;
+        display: flex;
+        align-items: center;
 
         i {
           margin-right: 0.3rem;
+          margin: 0.8rem;
           color: inherit;
+
+          @media (max-width: 600px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem;
+            font-size: 1.4rem;
+          }
+        }
+
+        p {
+          @media (max-width: 600px) {
+            display: none;
+          }
         }
       }
 
@@ -95,6 +119,10 @@ export const Home = styled.div`
     .modal__button {
       padding: 0.3rem 1rem;
     }
+
+    @media (max-width: 600px) {
+      width: 70px;
+    }
   }
 
   .main {
@@ -104,6 +132,11 @@ export const Home = styled.div`
     overflow: hidden;
     position: relative;
     top: 75px;
+
+    @media (max-width: 1000px) {
+      box-shadow: inset 5px 0 5px -5px var(--box-shadow);
+      width: 100%;
+    }
   }
 
   .suggestions {
@@ -142,31 +175,36 @@ export const Home = styled.div`
       display: flex;
       height: 5rem;
 
-      .user__image {
-        width: 25%;
-        height: 4rem;
-        margin: 0.3rem;
+      a {
+        display: flex;
+        width: 80%;
 
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          border: 1px solid gray;
+        .user__image {
+          width: 25%;
+          height: 4rem;
+          margin: 0.3rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid gray;
+          }
         }
-      }
-      .user__info {
-        width: 50%;
-        margin-top: 0.5rem;
-        margin-left: 0.4rem;
+        .user__info {
+          width: 50%;
+          margin-top: 0.5rem;
+          margin-left: 0.4rem;
 
-        p {
-          font-size: 0.8rem;
-          margin-top: 0.2rem;
+          p {
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+          }
         }
       }
 
       .user__button {
-        width: 25%;
+        width: 20%;
         align-self: center;
 
         button {
@@ -182,6 +220,14 @@ export const Home = styled.div`
         }
       }
     }
+
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 750px) {
+    width: 100%;
   }
 `;
 
@@ -195,6 +241,7 @@ export const Createpost = styled.div`
     height: 5rem;
     padding-right: 2rem;
     margin: 0.3rem 0rem;
+    cursor: pointer;
     box-shadow: var(--box-shadow) 0px 1px 1px 0px,
       var(--box-shadow) 0px 1px 2px 1px;
 

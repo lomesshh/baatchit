@@ -12,6 +12,16 @@ export const Feed = styled.div`
     width: 70%;
     margin: auto;
 
+    h3 {
+      @media (max-width: 1150px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 370px) {
+        font-size: 0.8rem;
+      }
+    }
+
     h3 i {
       margin-left: 1rem;
       cursor: pointer;
@@ -33,6 +43,10 @@ export const Feed = styled.div`
       color: var(--background-color);
       cursor: pointer;
     }
+
+    @media (max-width: 430px) {
+      width: 90%;
+    }
   }
 
   .disply__comment {
@@ -45,8 +59,20 @@ export const Feed = styled.div`
 
     .commentSection {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       margin: 0.3rem 0.7rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid gray;
+      padding-bottom: 0.6rem;
+
+      .comment__stmt {
+        margin-left: 2.2rem;
+      }
+
+      .comment__userinfo {
+        display: flex;
+        justify-content: space-between;
+      }
 
       .comment_pic {
         height: 30px;
@@ -62,6 +88,33 @@ export const Feed = styled.div`
         }
       }
     }
+
+    @media (max-width: 430px) {
+      width: 90%;
+    }
+  }
+
+  .filter__button {
+    display: none;
+
+    button {
+      padding: 0.4rem 0.8rem;
+      margin-right: 0.4rem;
+      border-radius: 5px;
+      border: 1px solid var(--text-primary-color);
+      background-color: var(--background-color);
+      color: var(--text-primary-color);
+    }
+
+    @media (max-width: 1000px) {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .not__found {
+    margin-top: 10rem;
   }
 `;
 
@@ -82,11 +135,20 @@ export const PostCard = styled.div`
   .profile__info h3 {
     margin-left: 0.5rem;
     margin-top: 0.4rem;
+
+    @media (max-width: 500px) {
+      font-size: 1rem;
+    }
   }
 
   .profile__image {
     height: 4rem;
     width: 4rem;
+
+    @media (max-width: 500px) {
+      height: 3rem;
+      width: 3rem;
+    }
   }
 
   .profile__image img {
@@ -111,6 +173,18 @@ export const PostCard = styled.div`
 
     h4 {
       margin: 0.2rem 0rem;
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+      }
     }
   }
 
@@ -120,6 +194,10 @@ export const PostCard = styled.div`
     justify-content: space-between;
     font-size: 1.3rem;
     cursor: pointer;
+
+    @media (max-width: 430px) {
+      font-size: 1.1rem;
+    }
   }
 
   .button__left {
@@ -127,6 +205,9 @@ export const PostCard = styled.div`
 
     i {
       margin-right: 1.5rem;
+      @media (max-width: 430px) {
+        margin-right: 1rem;
+      }
     }
 
     .liked__post,
@@ -140,6 +221,14 @@ export const PostCard = styled.div`
 
     i {
       margin-right: 1rem;
+
+      @media (max-width: 430px) {
+        margin-right: 0.8rem;
+      }
     }
+  }
+
+  @media (max-width: 430px) {
+    width: 90%;
   }
 `;

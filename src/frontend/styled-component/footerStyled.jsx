@@ -9,6 +9,13 @@ export const Footerdiv = styled.footer`
     display: flex;
     width: 100%;
     justify-content: space-between;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .footer__social {
@@ -18,6 +25,13 @@ export const Footerdiv = styled.footer`
   .footer__text {
     margin-left: 2%;
     width: 50%;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .footer__text h2 {

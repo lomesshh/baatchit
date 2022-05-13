@@ -48,7 +48,9 @@ export const getAllUserPostsHandler = function (schema, request) {
     const tempPosts = schema.posts.where({ username })?.models;
     let posts = [];
     tempPosts.map((ele) =>
-      posts.push({ ...ele.attrs, profilePic: user.profilePic })
+      username === user.username
+        ? posts.push({ ...ele.attrs, profilePic: user.profilePic })
+        : posts.push({ ...ele.attrs })
     );
     return new Response(200, {}, { posts });
   } catch (error) {

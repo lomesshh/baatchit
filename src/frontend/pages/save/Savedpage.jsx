@@ -3,6 +3,7 @@ import { Feed, PostCard } from "frontend/styled-component/feedStyled";
 import { getAllSavedPost } from "frontend/services/PostService";
 import { useDispatch, useSelector } from "react-redux";
 import { Postcard } from "frontend/components";
+import { Homepage } from "..";
 
 const Savedpage = () => {
   const dispatch = useDispatch();
@@ -27,14 +28,19 @@ const Savedpage = () => {
   };
 
   return (
-    <Feed>
-      <h1>
-        Saved posts <i class="fa-solid fa-bookmark"></i>
-      </h1>
-      {getFromAllPosts().map((post) => (
-        <Postcard post={post} kay={post._id} />
-      ))}
-    </Feed>
+    <Homepage>
+      <Feed>
+        <h1>
+          Saved posts <i className="fa-solid fa-bookmark"></i>
+        </h1>
+        {getFromAllPosts().length < 1 && (
+          <h1 className="not__found">No bookmarked post found !</h1>
+        )}
+        {getFromAllPosts().map((post) => (
+          <Postcard post={post} kay={post._id} />
+        ))}
+      </Feed>
+    </Homepage>
   );
 };
 

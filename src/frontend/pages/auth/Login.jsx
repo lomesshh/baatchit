@@ -15,7 +15,7 @@ const Login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      dispatch(handleUserLogin(values, navigate, "/home/feed"));
+      dispatch(handleUserLogin(values, navigate, "/feed"));
     },
     validate: (values) => {
       let errors = {};
@@ -88,9 +88,6 @@ const Login = () => {
         <button className="login__button" type="submit">
           Log in
         </button>
-        <div className="login__remember">
-          <input type="checkbox" /> <lable> Remember me</lable>
-        </div>
         <p>
           Don't have an account ?<Link to="/signup"> SignUp</Link>
         </p>

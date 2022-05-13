@@ -14,7 +14,7 @@ const SidebarComp = ({ open, setOpen, showEmoji, setShowEmoji }) => {
 
   return (
     <div className="sidebar">
-      <Link to="profile">
+      <Link to="/profile">
         <div className="user__profile">
           <div className="user__image">
             <img src={user.profilePic} alt="profile-img" />
@@ -26,19 +26,19 @@ const SidebarComp = ({ open, setOpen, showEmoji, setShowEmoji }) => {
         </div>
       </Link>
       <div className="sidebar__option">
-        <NavLink className={navLinkStyle} to="feed">
+        <NavLink className={navLinkStyle} to="/feed">
           <p>
-            <i class="fa-brands fa-wpexplorer"></i> Explore
+            <i className="fa-brands fa-wpexplorer"></i> <p>Explore</p>
           </p>
         </NavLink>
-        <NavLink className={navLinkStyle} to="likes">
+        <NavLink className={navLinkStyle} to="/likes">
           <p>
-            <i class="fa-solid fa-thumbs-up"></i> Liked posts
+            <i className="fa-solid fa-thumbs-up"></i> <p>Liked posts</p>
           </p>
         </NavLink>
-        <NavLink className={navLinkStyle} to="saved">
+        <NavLink className={navLinkStyle} to="/saved">
           <p>
-            <i class="fa-solid fa-bookmark"></i> Saved posts
+            <i className="fa-solid fa-bookmark"></i> <p>Saved posts</p>
           </p>
         </NavLink>
         <p
@@ -47,11 +47,11 @@ const SidebarComp = ({ open, setOpen, showEmoji, setShowEmoji }) => {
             setShowEmoji(false);
           }}
         >
-          <i class="fa-solid fa-circle-plus"></i> Create a post
+          <i className="fa-solid fa-circle-plus"></i> <p>Create a post</p>
         </p>
-        <NavLink className={navLinkStyle} to="profile">
+        <NavLink className={navLinkStyle} to="/profile">
           <p>
-            <i class="fa-solid fa-user"></i> My Profile
+            <i className="fa-solid fa-user"></i> <p>My Profile</p>
           </p>
         </NavLink>
         {token && (
@@ -61,7 +61,8 @@ const SidebarComp = ({ open, setOpen, showEmoji, setShowEmoji }) => {
               navigate("/");
             }}
           >
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>{" "}
+            <p>Logout</p>
           </p>
         )}
       </div>

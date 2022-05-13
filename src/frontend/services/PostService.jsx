@@ -14,6 +14,7 @@ import {
   saveAPoast,
   unSaveAPoast,
   setFilteredPost,
+  getAnyUsersPost,
 } from "frontend/redux/Slices/PostSlice";
 
 export const getAllPost = (filterType) => {
@@ -36,6 +37,22 @@ export const getUsersPost = (userName, token) => {
         headers: { authorization: token },
       });
       dispatch(getAllUsersPost(response.data.posts));
+      dispatch(toggleLoader(false));
+    } catch (error) {
+      dispatch(toggleLoader(false));
+      console.log(error);
+    }
+  };
+};
+
+export const getAnyUsersPostHandler = (userName, token) => {
+  return async (dispatch) => {
+    dispatch(toggleLoader(true));
+    try {
+      const response = await axios.get(`/api/posts/user/${userName}`, {
+        headers: { authorization: token },
+      });
+      dispatch(getAnyUsersPost(response.data.posts));
       dispatch(toggleLoader(false));
     } catch (error) {
       dispatch(toggleLoader(false));
@@ -184,6 +201,9 @@ export const likePost = (post, user, postId, token, filterType) => {
           }
         );
         dispatch(dislikeAPost(res.data.posts));
+        if (filterType != "") {
+          setFilteredPostData(res.data.posts, dispatch, filterType);
+        }
         dispatch(toggleLoader(false));
         Notify("You disliked a post", "info");
       } catch (error) {

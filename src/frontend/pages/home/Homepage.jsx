@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { Createpost, Home } from "frontend/styled-component/homeStyled";
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 import Picker from "emoji-picker-react";
 import { useSelector, useDispatch } from "react-redux";
 import { createPost } from "frontend/services/PostService";
 import { fetchAllUsers } from "frontend/services/UserService";
 import { SidebarComp, Suggestions } from "frontend/components";
 
-const Homepage = () => {
+const Homepage = ({ children }) => {
   const { token } = useSelector((state) => state.auth);
   const { allPosts } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -43,9 +43,7 @@ const Homepage = () => {
           open={open}
           setOpen={setOpen}
         />
-        <div className="main">
-          <Outlet />
-        </div>
+        <div className="main">{children}</div>
         <Suggestions />
       </Home>
 
@@ -74,7 +72,7 @@ const Homepage = () => {
           <div className="emoji__div">
             <i
               onClick={() => setShowEmoji(!showEmoji)}
-              class="fa-solid fa-face-grin"
+              className="fa-solid fa-face-grin"
             ></i>
             <input
               type="file"

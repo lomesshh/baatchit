@@ -13,7 +13,7 @@ const Suggestions = () => {
 
   return (
     <div className="suggestions">
-      {location.pathname === "/home/feed" && (
+      {location.pathname === "/feed" && (
         <div className="sortby">
           <h3>Sort by</h3>
           <button
@@ -40,13 +40,15 @@ const Suggestions = () => {
           .filter((ele) => !user.following.some((i) => i._id === ele._id))
           .map((user) => (
             <div key={user._id} className="user__profile">
-              <div className="user__image">
-                <img src={user.profilePic} alt="profile-img" />
-              </div>
-              <div className="user__info">
-                <h4>{user.firstName + " " + user.lastName}</h4>
-                <p>@{user.username}</p>
-              </div>
+              <Link to={`/user/${user._id}`}>
+                <div className="user__image">
+                  <img src={user.profilePic} alt="profile-img" />
+                </div>
+                <div className="user__info">
+                  <h4>{user.firstName + " " + user.lastName}</h4>
+                  <p>@{user.username}</p>
+                </div>
+              </Link>
               <div className="user__button">
                 <button onClick={() => dispatch(followUser(user._id, token))}>
                   Follow

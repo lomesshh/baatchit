@@ -59,6 +59,20 @@ export const Landing = styled.div`
         background-color: var(--text-primary-color);
         color: var(--background-color);
       }
+
+      @media (max-width: 950px) {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media (max-width: 500px) {
+        width: 70%;
+      }
     }
 
     .landing__img {
@@ -68,6 +82,16 @@ export const Landing = styled.div`
         height: 90%;
         width: 100%;
       }
+
+      @media (max-width: 950px) {
+        width: 80%;
+        margin: auto;
+      }
+    }
+
+    @media (max-width: 950px) {
+      flex-direction: column;
+      width: 100%;
     }
   }
 `;

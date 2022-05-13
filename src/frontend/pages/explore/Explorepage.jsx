@@ -7,20 +7,17 @@ import { fetchAllUsers } from "frontend/services/UserService";
 
 const Explorepage = () => {
   const dispatch = useDispatch();
-  const { allPosts } = useSelector((state) => state.post);
+  const { allPosts, filteredPost, filterType } = useSelector(
+    (state) => state.post
+  );
   const { user } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(getAllPost());
-    dispatch(fetchAllUsers());
-  }, [allPosts]);
 
   return (
     <Feed>
       <h1>
         Explore <i class="fa-brands fa-wpexplorer"></i>
       </h1>
-      {allPosts
+      {filteredPost
         .filter((ele) => ele.username !== user.username)
         .map((post) => (
           <Postcard post={post} key={post._id} />

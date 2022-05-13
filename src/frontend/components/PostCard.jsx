@@ -17,7 +17,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Postcard = ({ post }) => {
   const { user, token } = useSelector((state) => state.auth);
-  const { savedPost } = useSelector((state) => state.post);
+  const { savedPost, filterType } = useSelector((state) => state.post);
 
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -67,7 +67,11 @@ const Postcard = ({ post }) => {
       </Link>
       <div className="button__options">
         <div className="button__left">
-          <p onClick={() => dispatch(likePost(post, user, post._id, token))}>
+          <p
+            onClick={() =>
+              dispatch(likePost(post, user, post._id, token, filterType))
+            }
+          >
             <span>{post?.likes?.likeCount}</span>{" "}
             <i
               class={`fa-solid fa-thumbs-up ${
@@ -75,9 +79,11 @@ const Postcard = ({ post }) => {
               } `}
             ></i>
           </p>
-          <p>
-            <i class="fa-solid fa-comment-dots"></i>
-          </p>
+          <Link to={`/post/${post._id}`}>
+            <p>
+              <i class="fa-solid fa-comment-dots"></i>
+            </p>
+          </Link>
           <p
             onClick={() => dispatch(savePost(savedPost, post, post._id, token))}
           >

@@ -2,6 +2,8 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
   allPosts: [],
+  filteredPost: [],
+  filterType: "",
   usersPost: [],
   savedPost: [],
   loader: false,
@@ -13,6 +15,7 @@ const PostSlice = createSlice({
   reducers: {
     getPosts(state, action) {
       state.allPosts = action.payload;
+      state.filteredPost = action.payload;
     },
     toggleLoader(state, action) {
       state.loader = action.payload;
@@ -44,6 +47,11 @@ const PostSlice = createSlice({
     unSaveAPoast(state, action) {
       state.savedPost = action.payload;
     },
+    setFilteredPost(state, action) {
+      const { posts, type } = action.payload;
+      state.filteredPost = posts;
+      state.filterType = type;
+    },
   },
 });
 
@@ -59,6 +67,8 @@ export const {
   getSavedPost,
   saveAPoast,
   unSaveAPoast,
+  setFilteredPost,
+  addComment,
 } = PostSlice.actions;
 
 export default PostSlice;

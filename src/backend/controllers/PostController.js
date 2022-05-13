@@ -82,6 +82,7 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
+    let today = new Date();
     const { tempObj: postData } = JSON.parse(request.requestBody);
     const post = {
       _id: uuid(),
@@ -93,6 +94,14 @@ export const createPostHandler = function (schema, request) {
       },
       username: user.username,
       profilePic: user.profilePic,
+      creationDate:
+        today.getDate() +
+        "/" +
+        parseInt(today.getMonth() + 1) +
+        "/" +
+        today.getFullYear(),
+      isTrending: false,
+      comments: [],
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };
@@ -286,6 +295,90 @@ export const deletePostHandler = function (schema, request) {
       );
     }
     this.db.posts.remove({ _id: postId });
+    return new Response(201, {}, { posts: this.db.posts });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
+/**
+ * This handler handles adding a comment and reply in the db.
+ * send POST Request at /api/post/comment/:postId
+ * */
+
+export const commentPostHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: [
+            "The username you entered is not Registered. Not Found error",
+          ],
+        }
+      );
+    }
+    const postId = request.params.postId;
+    const { comment } = JSON.parse(request.requestBody);
+    const post = schema.posts.findBy({ _id: postId }).attrs;
+
+    if (!post.comments.some((item) => item._id === comment._id)) {
+      post.comments.push(comment);
+    } else {
+      const newComments = post.comments.reduce(
+        (acc, curr) =>
+          curr._id === comment._id ? [...acc, { ...comment }] : [...acc, curr],
+        []
+      );
+      post.comments = newComments;
+    }
+
+    this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+    return new Response(201, {}, { posts: this.db.posts });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
+/**
+ * This handler handles deleting a comment in the db.
+ * send POST Request at /api/post/commentdelete/:postId
+ * */
+
+export const commentDeleteHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: [
+            "The username you entered is not Registered. Not Found error",
+          ],
+        }
+      );
+    }
+    const postId = request.params.postId;
+    const commentId = request.params.commentId;
+    const post = schema.posts.findBy({ _id: postId }).attrs;
+    const newComments = post.comments.filter((item) => item._id !== commentId);
+    post.comments = newComments;
+    this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(

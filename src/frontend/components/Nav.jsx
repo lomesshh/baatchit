@@ -26,44 +26,46 @@ const Nav = () => {
             />
           </div>
         </Link>
-        <div className="searchBar">
-          <input
-            type="search"
-            placeholder="Search profile here"
-            value={searchFilter}
-            onChange={(e) => setSearchFilter(e.target.value)}
-          />
-          {searchFilter !== "" && (
-            <div className="search__user">
-              {allUsers
-                .filter((user) => {
-                  if (searchFilter === "") {
-                    return user;
-                  } else if (
-                    user.username
-                      .toLowerCase()
-                      .includes(searchFilter.toLowerCase())
-                  ) {
-                    return user;
-                  }
-                })
-                .map((user) => (
-                  <div
-                    className="search__userinfo"
-                    onClick={() => {
-                      setSearchFilter("");
-                      navigate(`/user/${user._id}`);
-                    }}
-                  >
-                    <div className="search__userimg">
-                      <img src={user.profilePic} />
+        {token && (
+          <div className="searchBar">
+            <input
+              type="search"
+              placeholder="Search profile here"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+            />
+            {searchFilter !== "" && (
+              <div className="search__user">
+                {allUsers
+                  .filter((user) => {
+                    if (searchFilter === "") {
+                      return user;
+                    } else if (
+                      user.username
+                        .toLowerCase()
+                        .includes(searchFilter.toLowerCase())
+                    ) {
+                      return user;
+                    }
+                  })
+                  .map((user) => (
+                    <div
+                      className="search__userinfo"
+                      onClick={() => {
+                        setSearchFilter("");
+                        navigate(`/user/${user._id}`);
+                      }}
+                    >
+                      <div className="search__userimg">
+                        <img src={user.profilePic} />
+                      </div>
+                      <p>{user.username}</p>
                     </div>
-                    <p>{user.username}</p>
-                  </div>
-                ))}
-            </div>
-          )}
-        </div>
+                  ))}
+              </div>
+            )}
+          </div>
+        )}
         <div>
           {!token && (
             <Link to="/login">

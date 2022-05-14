@@ -19,6 +19,7 @@ import { Notify } from "frontend/components";
 const Postcard = ({ post }) => {
   const { user, token } = useSelector((state) => state.auth);
   const { savedPost, filterType } = useSelector((state) => state.post);
+  const { allUsers } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -53,18 +54,22 @@ const Postcard = ({ post }) => {
 
   const findUserInSaved = savedPost.findIndex((ele) => ele === post._id);
 
+  const findUser = allUsers.find((ele) => ele.username === post.username);
+
   return (
     <PostCard>
-      <div className="profile__info">
-        <div className="profile__image">
-          <LazyLoadImage
-            src={post.profilePic}
-            alt="profile-img"
-            effect="blur"
-          />
+      <Link to={`/user/${findUser._id}`}>
+        <div className="profile__info">
+          <div className="profile__image">
+            <LazyLoadImage
+              src={post.profilePic}
+              alt="profile-img"
+              effect="blur"
+            />
+          </div>
+          <h3>{post.username}</h3>
         </div>
-        <h3>{post.username}</h3>
-      </div>
+      </Link>
       <Link to={`/post/${post._id}`}>
         {post.imgSrc && (
           <div className="post__image">

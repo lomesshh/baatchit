@@ -12,7 +12,7 @@ import {
   unfollowUser,
   followUser,
 } from "frontend/services/UserService";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Homepage } from "..";
 
 const AnyUser = () => {
@@ -28,6 +28,16 @@ const AnyUser = () => {
   const findUserInFollowing = user.following.some(
     (ele) => ele.username === anyUser.username
   );
+
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0 });
+      }, 0);
+    }, [pathname]);
+    return null;
+  };
 
   useEffect(() => {
     dispatch(fetchUserData(userId, token, navigate));
@@ -45,6 +55,7 @@ const AnyUser = () => {
 
   return (
     <Homepage>
+      <ScrollToTop />
       <ProfileDiv>
         {!loader && (
           <div className="profile__main">

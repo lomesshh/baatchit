@@ -57,20 +57,28 @@ Baatchit is a social media website just like instagram or twitter. In this app y
 [Baatchit](https://baatchit-social.netlify.app/) 🚀
 
 
-## Glimpses of Shoemall 🙈 :
+## Glimpses of Baatchit 🙈 :
 
 <table>
   <tr>
-    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705428/shoemall/Screenshot_27_n6nq14.png" alt="mockup" /></td>
-    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705427/shoemall/Screenshot_28_jgxs95.png" alt="mockups" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679257/baatchit/Screenshot_94_odt30j.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679255/baatchit/Screenshot_96_qzdyz7.png" alt="mockups" /></td>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705428/shoemall/Screenshot_36_vojv7y.png" alt="mockup" /></td>
-    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705427/shoemall/Screenshot_29_bvowon.png" alt="mockups" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679259/baatchit/Screenshot_97_lijiem.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679258/baatchit/Screenshot_104_itl6xm.png" alt="mockups" /></td>
   </tr>
   <tr>
-    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705426/shoemall/Screenshot_30_v3fl56.png" alt="mockup" /></td>
-    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705427/shoemall/Screenshot_32_q3q3gb.png" alt="mockups" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679264/baatchit/Screenshot_98_m8m5dq.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679257/baatchit/Screenshot_99_wt4ghx.png" alt="mockups" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679257/baatchit/Screenshot_100_ibp8xy.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679255/baatchit/Screenshot_101_kqh6q1.png" alt="mockups" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679257/baatchit/Screenshot_102_cusfrk.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1652679258/baatchit/Screenshot_105_qjzxsp.png" alt="mockups" /></td>
   </tr>
 </table>
 <h2>📬 Contact</h2>

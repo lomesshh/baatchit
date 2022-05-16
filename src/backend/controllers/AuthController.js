@@ -36,6 +36,8 @@ export const signupHandler = function (schema, request) {
       updatedAt: formatDate(),
       username,
       password,
+      profilePic:
+        "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1650457645/baatchit/man_rp4ore.png",
       ...rest,
       followers: [],
       following: [],

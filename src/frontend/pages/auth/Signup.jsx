@@ -6,7 +6,8 @@ import { handleUserSignup } from "frontend/services/AuthService";
 import { useDispatch } from "react-redux";
 
 const initialValues = {
-  name: "",
+  firstName: "",
+  lastName: "",
   username: "",
   email: "",
   password: "",
@@ -16,16 +17,22 @@ const initialValues = {
 const validate = (values) => {
   let errors = {};
 
-  if (!values.name) {
-    errors.name = "Required";
-  } else if (values.name.length < 3) {
-    errors.name = "Atleast 3 Character";
+  if (!values.firstName) {
+    errors.firstName = "Required";
+  } else if (values.firstName.length < 3) {
+    errors.firstName = "Atleast 3 Character";
+  }
+
+  if (!values.lastName) {
+    errors.lastName = "Required";
+  } else if (values.lastName.length < 3) {
+    errors.lastName = "Atleast 3 Character";
   }
 
   if (!values.username) {
-    errors.name = "Required";
-  } else if (values.name.length < 3) {
-    errors.name = "Atleast 3 Character";
+    errors.username = "Required";
+  } else if (values.username.length < 3) {
+    errors.username = "Atleast 3 Character";
   }
 
   if (!values.email) {
@@ -78,18 +85,31 @@ const Signup = () => {
       <form className="login signup" onSubmit={formik.handleSubmit}>
         <h1 className="login__title">Sign Up</h1>
         <div className="login__fields">
-          <p htmlFor="name">Name</p>
+          <p htmlFor="firstName">First name</p>
           <input
             type="text"
-            placeholder="Enter name"
-            name="name"
+            placeholder="Enter firstname"
+            name="firstName"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.name}
+            value={formik.values.firstName}
           />
           <br />
-          {formik.touched.name && formik.errors.name ? (
-            <span className="error__display">{formik.errors.name}</span>
+          {formik.touched.firstName && formik.errors.firstName ? (
+            <span className="error__display">{formik.errors.firstName}</span>
+          ) : null}
+          <p htmlFor="lastName">Last name</p>
+          <input
+            type="text"
+            placeholder="Enter lastname"
+            name="lastName"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.lastName}
+          />
+          <br />
+          {formik.touched.lastName && formik.errors.lastName ? (
+            <span className="error__display">{formik.errors.lastName}</span>
           ) : null}
           <p htmlFor="username">Username</p>
           <input

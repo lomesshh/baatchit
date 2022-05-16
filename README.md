@@ -5,7 +5,7 @@
 <h1 align="center"><b>Shoemall</b></h1>
 
 <div align="center">
-A Shoemall is a website that allows you to buy shoes & flip flops online. we have variety of categories at our shoemall just visit product listing page you will see all products. apply filters as per your need and in just few clicks you can buy any products from our website. shoemall can accept all kind of payment like debit/credit card, UPI etc.
+Baatchit is a social media website just like instagram or twitter. In this app you can like a post and save a post. you can also create posts in which you can add images or gifs. you can follow and unfollow a user. you can share a post and comment on the post also. you can check other users profile
 </div><br/>
 
 
@@ -15,17 +15,14 @@ A Shoemall is a website that allows you to buy shoes & flip flops online. we hav
 ![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
 ![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
 ![javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
-
-**Payment Gateway:**
-
-![Razorpay](https://img.shields.io/badge/Razorpay-02042B?style=for-the-badge&logo=razorpay&logoColor=3395FF)
 
 **Deployed On:**
 
 ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+
 
 **Image Management:** [Cloudinary](https://cloudinary.com/)
 
@@ -33,36 +30,31 @@ A Shoemall is a website that allows you to buy shoes & flip flops online. we hav
 
 ## Screens ( All screens are responsive )
    - Homepage
-   - Product Listing Page with Filters
-   - Single Product Page
-   - Cart Management
-   - Wishlist Management
-   - Address management
+   - Explore Page
+   - Bookmark Page
+   - Like Page
+   - User Profile page
+   - Single post page
    - Login / Logout
    - Signup
-   - User Profile page
-   - Checkout
-   - Order summary
-
+   - Post management page (Add / Edit)
 
 ## 🚀 Features
 - Login/Signup User Account
-- Product Filters Based on Price, Category, Ratings | Sort By
-- Product Search
-- Products Pagination (Default 6 Products Per Page)
-- Wishlist Add/Remove Items
-- Cart Add/Remove Items | Update Quantities
-- Address management
-- Order summary
-- Coupons provided for discount
-- Razorpay payment gateway
-- My orders
-- Order details of all ordered item
-- Darkmode available
+- Post Filters Based on Trending, Latest, Oldest 
+- Profile Search
+- Explore (All posts)
+- Like Add/Remove Posts
+- Bookmark Add/Remove Posts
+- Post Upload ( Image/Gifs Allowed )
+- My Profile
+- Follow / Unfollow user
+- Comment on post
+- Share a post
 
 
 ## Live
-[Shoemall](https://shoemall.netlify.app/) 🚀
+[Baatchit](https://baatchit-social.netlify.app/) 🚀
 
 
 ## Glimpses of Shoemall 🙈 :

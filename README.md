@@ -1,71 +1,94 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="https://shoemall.netlify.app/" rel="noopener" target="_blank"><img width="150" src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647240006/shoemall/logo_rhszkc.png" alt="Material-UI logo"></a></p>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center"><b>Shoemall</b></h1>
 
-## Available Scripts
+<div align="center">
+A Shoemall is a website that allows you to buy shoes & flip flops online. we have variety of categories at our shoemall just visit product listing page you will see all products. apply filters as per your need and in just few clicks you can buy any products from our website. shoemall can accept all kind of payment like debit/credit card, UPI etc.
+</div><br/>
 
-In the project directory, you can run:
 
-### `yarn start`
+## 🖥️ Tech Stack
+**Frontend:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
+![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
+![javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+**Payment Gateway:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Razorpay](https://img.shields.io/badge/Razorpay-02042B?style=for-the-badge&logo=razorpay&logoColor=3395FF)
 
-### `yarn build`
+**Deployed On:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Image Management:** [Cloudinary](https://cloudinary.com/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Screens ( All screens are responsive )
+   - Homepage
+   - Product Listing Page with Filters
+   - Single Product Page
+   - Cart Management
+   - Wishlist Management
+   - Address management
+   - Login / Logout
+   - Signup
+   - User Profile page
+   - Checkout
+   - Order summary
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🚀 Features
+- Login/Signup User Account
+- Product Filters Based on Price, Category, Ratings | Sort By
+- Product Search
+- Products Pagination (Default 6 Products Per Page)
+- Wishlist Add/Remove Items
+- Cart Add/Remove Items | Update Quantities
+- Address management
+- Order summary
+- Coupons provided for discount
+- Razorpay payment gateway
+- My orders
+- Order details of all ordered item
+- Darkmode available
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Live
+[Shoemall](https://shoemall.netlify.app/) 🚀
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Glimpses of Shoemall 🙈 :
 
-### Code Splitting
+<table>
+  <tr>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705428/shoemall/Screenshot_27_n6nq14.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705427/shoemall/Screenshot_28_jgxs95.png" alt="mockups" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705428/shoemall/Screenshot_36_vojv7y.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705427/shoemall/Screenshot_29_bvowon.png" alt="mockups" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705426/shoemall/Screenshot_30_v3fl56.png" alt="mockup" /></td>
+    <td><img src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1648705427/shoemall/Screenshot_32_q3q3gb.png" alt="mockups" /></td>
+  </tr>
+</table>
+<h2>📬 Contact</h2>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+If you want to contact me, you can reach me through below handles.
 
-### Analyzing the Bundle Size
+[![linkedin](https://img.shields.io/badge/lomesshh-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lomesshh/)
+[![Twitter](https://img.shields.io/badge/lomesshh-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/lomesshh)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+© 2022 Lomesh Badhe
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# baatchit" 
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)

@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://shoemall.netlify.app/" rel="noopener" target="_blank"><img width="150" src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647240006/shoemall/logo_rhszkc.png" alt="Material-UI logo"></a></p>
+  <a href="https://baatchit-social.netlify.app/" rel="noopener" target="_blank"><img width="150" src="https://res.cloudinary.com/dgwzpbj4k/image/upload/v1649917437/baatchit/baatchit_s8ziaf.png" alt="Material-UI logo"></a></p>
 </p>
 
-<h1 align="center"><b>Shoemall</b></h1>
+<h1 align="center"><b>Baatchit</b></h1>
 
 <div align="center">
 Baatchit is a social media website just like instagram or twitter. In this app you can like a post and save a post. you can also create posts in which you can add images or gifs. you can follow and unfollow a user. you can share a post and comment on the post also. you can check other users profile

@@ -79,8 +79,8 @@ const Login = () => {
           className="login__button"
           type="submit"
           onClick={() => {
-            formik.values.username = "adarshbalika";
-            formik.values.password = "adarshBalika123";
+            formik.values.username = "Carry123";
+            formik.values.password = "111111";
           }}
         >
           Test credentials
